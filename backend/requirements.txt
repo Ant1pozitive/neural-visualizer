@@ -1,0 +1,7 @@
+fastapi==0.95.2
+uvicorn[standard]==0.22.0
+sqlmodel==0.0.7
+pydantic==2.3.0
+numpy==1.26.4
+aiofiles==23.1.0
+python-multipart==0.0.6
