@@ -1,3 +1,5 @@
+// src/types.ts
+
 /**
  * Shared TypeScript types for the frontend.
  * These types correspond to API payloads.
