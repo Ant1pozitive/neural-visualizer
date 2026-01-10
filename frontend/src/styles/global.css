@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #0e0e11;
+  color: #eaeaf0;
+}
+
+.app-root {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #16161d;
+  padding: 16px;
+}
+
+.app-main {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+.time-slider {
+  width: 100%;
+}
+
+.memory-slot {
+  margin-bottom: 6px;
+  font-family: monospace;
+}
