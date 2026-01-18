@@ -103,7 +103,7 @@ By default the frontend expects the backend at `http://localhost:8000`. Adjust `
 
 ---
 
-## Project layout (important files)
+## Project layout
 
 ```
 frontend/                      # Layer 1 (Presentation)
@@ -183,7 +183,7 @@ ws.onmessage = (ev) => {
 
 ---
 
-## Instrumenting your model (generic guide)
+## Instrumenting your model (generic)
 
 This system is model-agnostic. You have two options:
 
@@ -288,7 +288,7 @@ The `Trainer` is generic and attempts `model(inputs, return_attn=True)` if model
 
 ---
 
-## Next steps / Roadmap (suggested)
+## Next steps / Roadmap
 
 * Add API endpoints for blob streaming and partial tensor requests (e.g., fetch a slice of attention).
 * Add tests and CI for core pipelines (instrumentation, trainer, storage).
@@ -298,14 +298,10 @@ The `Trainer` is generic and attempts `model(inputs, return_attn=True)` if model
 
 ---
 
-## Contributing
+## Contributing & License
 
 * Fork the repo, create feature branches, run tests, and open PRs.
 * Code style: Python — `black` + `isort`; TypeScript — `prettier`.
 * Add unit tests for instrumentor and storage backends.
-
----
-
-## License
 
 **MIT License**
