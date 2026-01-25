@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: nnviz-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app:delegated
+      - runs_data:/app/runs
+    environment:
+      PYTHONUNBUFFERED: "1"
+      STORAGE_BASE: "/app/runs"
+      # MinIO connection vars (optional)
+      MINIO_ENDPOINT: "http://minio:9000"
+      MINIO_ACCESS_KEY: "minioadmin"
+      MINIO_SECRET_KEY: "minioadmin"
+    depends_on:
+      - minio
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: nnviz-frontend
+    restart: unless-stopped
+    # Map host:5173 to container:80 (nginx serving built static files)
+    ports:
+      - "5173:80"
+    environment:
+      VITE_API_BASE: "http://localhost:8000"
+    depends_on:
+      - backend
+
+  minio:
+    image: minio/minio:RELEASE.2025-01-01T00-00-00Z
+    container_name: nnviz-minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"   # API
+      - "9001:9001"   # Console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  runs_data:
+  minio_data:
